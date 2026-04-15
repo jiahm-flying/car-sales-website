@@ -65,9 +65,8 @@
             <label>password:at least 6 alphanumeric characters</label>
             <input type="password" id="password" placeholder="Your password">
             <span class="err-tip"></span><br>
-            <button type="submit" class="submit-btn">registration</button>
         </form>
-
+        <button type="submit" class="submit-btn">registration</button>
 
 
     </div>
@@ -175,12 +174,7 @@ document.getElementById('registration').addEventListener('submit', function(e) {
     }
 
     alert('Registration successful!');
-    localStorage.setItem('registeredUser', JSON.stringify({
-        username: usernameVal,
-        password: passwordVal
-    }));
     window.location.href = 'LoginPage.html';
-
 });
 </script>
 </html>
