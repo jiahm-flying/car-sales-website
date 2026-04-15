@@ -6,10 +6,25 @@
 
 </head>
 <style>
-        body {
+         body {
             background-color: #000;
             color: #fff;
-
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            box-sizing: border-box;
+        }
+        .login-btn {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 20px; 
+            width: 100%;
         }
         input {
             background-color: #333;
@@ -17,15 +32,41 @@
             border: 1px solid #666;
         }
 </style>
-<body>
+<form id="loginForm">
     <div>
-        <h1>username</h1>
-        <input name="username" placeholder="Your username">
-        
+      <h3>Username</h3>
+      <input type="text" id="username" placeholder="Your username">
     </div>
-         <h1>password</h1>
-        <input type="password" placeholder="Your Password">
+    <div>
+      <h3>Password</h3>
+      <input type="password" id="password" placeholder="Your Password">
+      <span class="err-tip" id="loginTip"></span>
+    </div>
+    <button type="submit" class="login-btn">Login</button>
+  </form>
+ <script>
 
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const loginTip = document.getElementById('loginTip');
+      loginTip.textContent = '';
 
-</body>
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      const registeredUser = JSON.parse(localStorage.getItem('registeredUser') || '{}');
+
+      if (!username || !password) {
+        loginTip.textContent = 'Username/password cannot be empty';
+        return;
+      }
+      if (username !== registeredUser.username || password !== registeredUser.password) {
+        loginTip.textContent = 'Incorrect username or password';
+        return;
+      }
+
+      alert('Login successful!');
+      // window.location.href = 'home.html';
+    });
+  </script>
 </html>
