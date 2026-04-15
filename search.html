@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>search page</title>
+        <style>
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body{
+                background-color: black;
+                color:white;
+            }
+
+            .container{
+                margin: 0;
+                padding: 0 10%;
+            }
+
+            .top{
+                margin:5% 10% 4% 12%;
+                max-width:78%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .top-h1{
+                font-size: 30px;
+            }
+
+            .top-a{
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 20px;
+                color:white;
+                background-color: rgb(35, 35, 35);
+                border:1px solid rgb(13, 6, 56);
+                padding: 5px 20px;
+                border-radius: 12px;
+                
+            }
+
+            .top-a:hover {
+                background: #2a2a4a;
+                border-color: #5a7aff;
+                color: white;
+            }
+
+            .search-part{
+                background-color: rgb(20, 20, 20);
+                padding:4% 10% 3% 5%;
+                border-radius: 25px;
+            }
+
+            .form-row{
+                margin-bottom:40px;
+                display: flex;
+            }
+
+            .form-h1{
+                width:10%;
+                font-size:30px;
+                font-weight: normal;
+                margin-top:5px;
+            }
+
+            .form-input{
+                height: 50px;
+                width:90%;
+                background-color: rgb(30, 30, 30);
+                border:1.5px solid rgb(52, 52, 52);
+                color:white;
+                font-size:25px;
+                padding:5px 15px;
+                border-radius: 12px;
+            }
+            .form-input:hover{
+                border-color:#5a7aff;
+            }
+
+            .form-input:focus{
+                border-color:#5a7aff;
+                outline: none;
+            }
+
+            .button-place{
+                text-align:center;
+            }
+
+            .search-button{
+                width: 200px;
+                height: 50px;
+                background-color: rgb(53, 53, 255);
+                color:white;
+                border:none;
+                font-size: 32px;
+                font-weight:600;
+                border-radius: 12px;
+            }
+            
+            .search-button:hover{
+                border-color:white;
+                transform: scale(1.02);
+                background-color: rgb(20,20,255);
+            }
+
+            .carlist{
+                text-align:center;
+                padding-top:30px;
+            }
+        </style>
+        <script>
+            function searchshow()
+            {
+                year = document.getElementById("year").value;
+                model = document.getElementById("model").value;
+                container = document.getElementById("carlist");
+
+                pattyear = /^[0-9]{4}$/;
+                pattmodel = /^[a-zA-z0-9]+(?:[-_][A-Za-z0-9]+)*$/;
+                if (!pattyear.test(year)){
+                    alert("please give the right year");
+                }else if(year < 2000 || year > 2026){
+                    alert("please give the right year");
+                }
+
+                if (!pattmodel.test(model)){
+                    alert("please give the right model");
+                }
+
+                container.innerHTML = htmlstring;
+                return false;
+            }
+        </script>
+    </head>
+
+    <body>
+       <div class="top">
+            <h1 class="top-h1">Search for the car you need</h1>
+            <a class="top-a" href="homepage.html">home</a>
+        </div>
+        <div class="container">
+            <form class="search-part" onsubmit="return searchshow()">
+                <div class="form-row">
+                    <h1 class="form-h1">Year</h1>
+                    <input class="form-input" type="text" id="year">
+                </div>
+                <div class="form-row">
+                    <h1 class="form-h1">Model</h1> 
+                    <input class="form-input" type="text" id="model">
+                </div>
+                <div class="button-place">
+                    <button type="submit" class="search-button">search</button>
+                </div>
+                
+            </form>
+            <div id="carlist" class="carlist"></div>
+        </div>
+    </body>
+</html>
