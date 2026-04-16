@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>search page</title>
         <style>
 
@@ -108,8 +109,83 @@
             }
 
             .carlist{
-                text-align:center;
                 padding-top:30px;
+            }
+            
+            .no-results{
+                text-align: center;
+                font-size: 40px;
+            }
+
+            .carcard{
+                width: 100%;
+                background-color: rgb(7, 7, 35);
+                border-radius: 28px;
+                margin-bottom:20px;
+                text-align:left;
+                padding: 18px 28px;
+                border: 2px rgb(0, 0, 35) solid;
+                font-size: 19px;
+                font-weight: 500;
+            }
+
+            .carcard:hover {
+                border-color:rgb(21, 83, 171);
+                transform: scale(1.02);
+                background-color: rgb(9, 9, 96);
+            }
+
+            @media screen and (max-width: 1024px) {
+
+                .container{
+                    padding:0 5%;
+                }
+
+                .form-h1 {
+                    width: 12%;
+                    font-size: 25px;
+                }
+
+                .form-input {
+                    width: 88%;
+                    height: 50px;
+                    font-size: 20px;
+                }
+            }
+            @media screen and (max-width: 480px) {
+
+                .container{
+                    padding:0 15px;
+                }
+
+                .no-results {
+                    font-size: 20px;
+                }
+
+                .top-h1{
+                    font-size: 20px;
+                }
+
+                .form-row{
+                    display: block;
+                }
+
+                .form-h1{
+                    display: block;
+                    font-size: 18px;
+                    margin-bottom: 12px;
+                }
+
+                .form-input{
+                    display: block;
+                    width:85%;
+                    font-size: 20px;
+                }
+
+                .carcard {
+                    padding: 16px 18px;
+                    font-size: 18px;
+                }
             }
         </style>
         <script>
@@ -120,27 +196,88 @@
                 container = document.getElementById("carlist");
 
                 pattyear = /^[0-9]{4}$/;
-                pattmodel = /^[a-zA-z0-9]+(?:[-_][A-Za-z0-9]+)*$/;
+                pattmodel = /^[a-zA-Z0-9 ]+$/;
                 if (!pattyear.test(year)){
                     alert("please give the right year");
+                    return false;
                 }else if(year < 2000 || year > 2026){
                     alert("please give the right year");
+                    return false;
                 }
 
                 if (!pattmodel.test(model)){
                     alert("please give the right model");
+                    return false;
+                }
+                
+                /*the data is fake only to test the search function*/
+                const cars = [
+                    {
+                        year: 2023,
+                        model: 'Tesla Model Y',
+                        color: 'white',
+                        place: 'HaiKou'
+                    },
+                    {
+                        year: 2024,
+                        model: 'BYD Han',
+                        color: 'red',
+                        place: 'SanYa'
+                    },
+                    {
+                        year: 2025,
+                        model: 'Xiaomi SU7',
+                        color: 'green',
+                        place: 'LingShui'
+                    },
+                    {
+                        year: 2025,
+                        model: 'Xiaomi SU7',
+                        color: 'purple',
+                        place: 'WanNing'
+                    }
+                ];
+
+                let matchcar = [];
+
+                for (let i = 0; i < cars.length; i++){
+                    const car = cars[i];
+                    if (year != car.year){
+                        continue;
+                    }
+                    
+                    if (model != car.model){
+                        continue;
+                    }
+                    matchcar.push(car);
                 }
 
+                let htmlstring = '';
+                if (matchcar.length == 0){
+                    htmlstring = '<div class="no-results">no  matching vehicles found</div>';
+                }else{
+                    for (let i=0; i < matchcar.length; i++){
+                        let car = matchcar[i];
+                        htmlstring += '<div class="carcard">' 
+                            + 'Model: ' + car.model 
+                            + '  |  Year: ' + car.year 
+                            + '  |  Color: ' + car.color 
+                            + '  |  Place: ' + car.place
+                            + '</div>';
+                    }
+                }
+                
                 container.innerHTML = htmlstring;
                 return false;
             }
+
         </script>
     </head>
 
     <body>
        <div class="top">
             <h1 class="top-h1">Search for the car you need</h1>
-            <a class="top-a" href="homepage.html">home</a>
+            <a class="top-a" href="compressed_homepage.html">home</a>
         </div>
         <div class="container">
             <form class="search-part" onsubmit="return searchshow()">
