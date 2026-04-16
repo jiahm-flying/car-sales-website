@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /*  The removal of the blue highlight box on mobile devices and
+            the setting of the gray text effect on click are all AI-generated. */
+        * {
+            -webkit-tap-highlight-color: transparent !important;
+            outline: none !important;
+        }
+
+        .menu:active,
+        .cancel:active,
+        a:active {
+            color: grey !important;
+        }
+
+        body {background-color: black;}
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: black;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            z-index: 10;
+        }
+        .menu {
+            flex: 1;
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .menu:hover{color: grey;}
+        a.search {
+            flex: 1;
+            color: white;
+            margin-right: 25px;
+            text-decoration: none;
+            text-align: right;
+            font-size: 30px;
+        }
+        a.search:hover {color: grey;}
+        .search-icon {
+            width: 24px;
+            height: 24px;
+        }
+        img.logo {
+            max-width: 100%;
+            height: auto;
+            width: 100px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 30px;
+            color: white;
+        }
+        p {
+            font-size: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .name {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1em;
+            cursor: pointer;
+        }
+        .arrow {
+            width: 32px;
+            height: 32px;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+        .arrow.open {
+            transform: rotate(180deg);
+        }
+        .content {
+            display: none;
+            line-height: 1.7;
+            color: black;
+        }
+        .content.show {
+            display: block;
+        }
+
+        img.show {
+            width: 100%;
+            height: auto;
+        }
+        .img {
+            position: relative;
+            display: inline-block;
+        }
+        .img-text {
+            background-color: whitesmoke;
+            border-color: whitesmoke;
+            border-style: solid;
+            padding: 15px;
+            position: absolute;
+            bottom: 120px;
+            left: 100px;
+        }
+        a.imgtext {
+            color: black;
+            font-size: 20px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        @media (max-width: 480px) {
+            h1 {font-size: 20px;}
+            p {font-size: 8px;}
+            .header {height: 60px;}
+            .menu {font-size: 20px;}
+            a.search {font-size: 20px;}
+            .search-icon {width: 16px; height: 16px;}
+            .img-text {padding: 6px; padding-top: 3px; padding-bottom: 3px; bottom: 60px; left: 50px;}
+            a.imgtext {font-size: 10px;}
+            img.logo {width: 80px;}
+        }
+
+        .menu-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 20;
+            display: none;
+        }
+        .menu-header {
+            display: flex;
+            width: 100%;
+            background: black;
+            height: 75px;
+            align-items: center;
+        }
+        .menu-title {
+            flex: 1;
+            color: white;
+            margin-left: 20px;
+            font-size: 30px;
+        }
+        .cancel {
+            flex: 1;
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            text-align: right;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        a.a1 {
+            text-decoration: none;
+            font-size: 80px;
+            margin-left: 15px;
+            color: white;
+            display: block;
+            margin-top: 20px;
+        }
+        .menuimg {
+            max-width: 100%;
+            height: auto;
+            width: 70%;
+            position: absolute;
+            top: 120px;
+            right: 0;
+        }
+
+        @media (max-width: 480px) {
+            .menu-header {height: 60px;}
+            .menu-title {font-size: 20px;}
+            .cancel {font-size: 20px;}
+            .menuimg {display: none;}
+            a.a1 {
+                margin-left: 10px;
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu" id="menuBtn">☰ Menu</div>
+        <img src="logo.png" class="logo">
+        <a href="search.html" class="search">
+            <!-- The search icon is generated by AI. -->
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="10" cy="10" r="7"></circle>
+                <line x1="15" y1="15" x2="21" y2="21"></line>
+            </svg> Search
+        </a>
+    </div>
+    <br><br><br>
+    <div class="name" id="toggleBtn">
+        <h1>qmsl .quick market sold line</h1>
+        <div class="arrow" id="arrow">V</div>
+    </div>
+
+    <div class="content" id="content">
+        <p>qmsl is a used car trading platform built on the brand philosophy of Quick Market Sold Line.<br>
+            We are committed to creating a fast, transparent and efficient express lane for second-hand vehicle transactions.<br>
+            We carefully select a large number of high-quality car sources,<br>
+            build a safe and reliable trading bridge for both buyers and sellers,<br>
+            making used car transactions time-saving and hassle-free,<br>
+            helping you start your wonderful driving life easily.
+        </p>
+    </div>
+
+    <div class="img">
+        <img src="新对话.png" class="show">
+        <div class="img-text">
+            <a href="buy.html" class="imgtext">LEARN MORE</a>
+        </div>
+    </div>
+    <div class="img">
+        <img src="生成黑色背景汽车图片.png" class="show">
+        <div class="img-text">
+            <a href="buy" class="imgtext">LEARN MORE</a>
+        </div>
+    </div>
+    <div class="img">
+        <img src="生成黑色背景汽车图片 (1).png" class="show">
+        <div class="img-text">
+            <a href="buy" class="imgtext">LEARN MORE</a>
+        </div>
+    </div>
+
+    <div class="menu-modal" id="menuModal">
+        <div class="menu-header">
+            <div class="menu-title">Menu</div>
+            <div class="cancel" id="cancelBtn">X</div>
+        </div>
+        <img src="新对话_副本.png" class="menuimg">
+        <br><br>
+        <a href="RegistrationPage.html" class="a1">Regist</a><br>
+        <a href="LoginPage.html" class="a1">Log in</a><br>
+        <a href="search.html" class="a1">Buy</a><br>
+        <a href="product listing page.html" class="a1" style="border-bottom-style: none;">Sell</a><br>
+    </div>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const menuModal = document.getElementById('menuModal');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const content = document.getElementById('content');
+        const arrow = document.getElementById('arrow');
+
+        // The monitoring functions are generated by AI.
+        menuBtn.addEventListener('click', () => {
+            menuModal.style.display = 'block';
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            menuModal.style.display = 'none';
+        });
+
+        toggleBtn.addEventListener('click', () => {
+            content.classList.toggle('show');
+            arrow.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
