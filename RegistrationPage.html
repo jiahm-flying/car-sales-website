@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html>
-
-<style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
         body {
             background-color: #000;
             color: #fff;
             margin: 0;
         }
-        div[style] {
+        .container {
             width: 450px;
             margin: 80px auto;
             background-color: #111;
@@ -38,9 +41,11 @@
         .submit-btn:hover {
             background-color: #666;
         }
-</style>
-    <title>Registration Page</title>
-    <div style="width: 450px;margin: 80px auto;">
+    </style>
+</head>
+<body>
+
+    <div class="container">
         <h2>Registration</h2>
         <form id="registration">
             <label>name</label>
@@ -62,16 +67,15 @@
             <label>username: at least 6 alphanumeric characters</label>
             <input type="text" id="username" placeholder="Your username">
             <span class="err-tip"></span><br><br>
+            
             <label>password:at least 6 alphanumeric characters</label>
             <input type="password" id="password" placeholder="Your password">
             <span class="err-tip"></span><br>
+            
             <button type="submit" class="submit-btn">registration</button>
         </form>
-
-
-
     </div>
-    
+
 <script>
 const namePattern = /^[a-zA-Z\s]+$/;
 const addressPattern = /^[a-zA-Z0-9\s]+$/;
@@ -183,4 +187,5 @@ document.getElementById('registration').addEventListener('submit', function(e) {
 
 });
 </script>
+</body>
 </html>
